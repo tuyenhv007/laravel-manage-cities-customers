@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
 
 // tao group route customers
 Route::group(['prefix' => 'customers'], function () {
@@ -37,3 +34,23 @@ Route::group(['prefix' => 'cities'], function() {
     Route::post('{id}/edit', 'CityController@update')->name('cities.update');
     Route::get('{id}/delete', 'CityController@destroy')->name('cities.destroy');
 });
+
+Route::group(['middleware' => 'locale'], function() {
+    Route::get('/', function () {
+        return view('home-language');
+    })->name('home');
+
+
+    // Hiển thị danh sách bài viết
+    Route::get('/customers', 'CustomerController@index')->name('customers.index');
+
+    // Hiển thị giao diện thêm mới bài viết
+    Route::get('/customers/create', 'CustomerController@create')->name('customers.create');
+
+    // Tạo mới bài viết
+    Route::post('/customers/create', 'CustomerController@store')->name('customers.store');
+
+    // Chuyển đổi ngôn ngữ cho website
+    Route::get('change-language/{language}', 'LanguageController@changeLanguage')->name('user.change-language');
+});
+

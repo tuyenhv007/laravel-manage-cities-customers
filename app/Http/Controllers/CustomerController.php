@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\City;
 use App\Customer;
+use App\Http\Requests\FormCustomerRequest;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -39,7 +40,7 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FormCustomerRequest $request)
     {
         $customer = new Customer();
         $customer->name = $request->input('name');
@@ -126,7 +127,7 @@ class CustomerController extends Controller
         $cityFilter = City::findOrFail($idCity);
 
         // lay ra tat ca customer cua cityFilter
-        $customers = Customer::where('city_id', $cityFilter->id)->get();
+        $customers = Customer::where('city_id', $cityFilter->id)->paginate(5);
         $totalCustomerFilter = count($customers);
         $cities = City::all();
 

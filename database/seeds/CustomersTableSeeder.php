@@ -18,6 +18,7 @@ class CustomersTableSeeder extends Seeder
         $customer->email = "customer1@codegym.vn";
         $customer->city_id = 1;
         $customer->save();
+
         $customer = new \App\Customer();
         $customer->id = 2;
         $customer->name = "customer 2";
@@ -25,6 +26,7 @@ class CustomersTableSeeder extends Seeder
         $customer->email = "customer1@codegym.vn";
         $customer->city_id = 1;
         $customer->save();
+
         $customer = new \App\Customer();
         $customer->id = 3;
         $customer->name = "customer 3";

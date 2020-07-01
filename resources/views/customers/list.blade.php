@@ -1,16 +1,16 @@
 @extends('home')
 @section('title', 'Danh sách khách hàng')
 @section('content')
-    <div class="col-12">
+    <div class="col-12 pt-3">
         <div class="row">
             <div class="col-12">
-                <h1>Danh Sách Khách Hàng</h1>
+                <h2>{!! __('language.list_customer') !!}</h2>
             </div>
             <div class="col-12">
                 <div class="row">
                     <div class="col-6">
                         <a href="" class="btn btn-outline-primary" data-toggle="modal" data-target="#cityModal">
-                            Lọc
+                            {!! __('language.filter') !!}
                         </a>
                         @if(\Illuminate\Support\Facades\Session::has('success'))
                             <p class="text-success">
@@ -42,7 +42,7 @@
                                     </div>
                                 </div>
                                 <div class="col-4">
-                                    <button class="btn btn-default" type="submit">Tìm kiếm</button>
+                                    <button class="btn btn-default" type="submit">{!! __('language.search') !!}</button>
                                 </div>
                             </div>
                         </form>
@@ -53,10 +53,10 @@
                 <thead>
                 <tr>
                     <th scope="col">STT</th>
-                    <th scope="col">Tên Khách Hàng</th>
-                    <th scope="col">Ngày Sinh</th>
+                    <th scope="col">{!! __('language.name') !!}</th>
+                    <th scope="col">{!! __('language.dob') !!}</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Tỉnh thành</th>
+                    <th scope="col">{!! __('language.province') !!}</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -74,9 +74,9 @@
                             <td>{{ $customer->dob }}</td>
                             <td>{{ $customer->email }}</td>
                             <td>{{ $customer->city->name }}</td>
-                            <td><a href="{{route('customers.edit', $customer->id) }}">Sửa</a></td>
+                            <td><a href="{{route('customers.edit', $customer->id) }}">{!! __('language.edit') !!}</a></td>
                             <td><a href="{{ route('customers.destroy', $customer->id) }}" class="text-danger"
-                                   onclick="return confirm('Bạn chắc chắn muốn xóa?')">Xóa</a></td>
+                                   onclick="return confirm('Bạn chắc chắn muốn xóa?')">{!! __('language.delete') !!}</a></td>
                         </tr>
                     @endforeach
                 @endif
@@ -85,7 +85,7 @@
             <div class="col-12">
                 <div class="row">
                     <div class="col-6">
-                        <a href="{{ route('customers.create') }}" class="btn btn-primary">Thêm mới</a>
+                        <a href="{{ route('customers.create') }}" class="btn btn-primary">{!! __('language.create') !!}</a>
                     </div>
                     <div class="col-6">
                         <div class="pagination float-right">
@@ -136,7 +136,7 @@
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-primary" id="submitAjax">Chọn</button>
-                            <button class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
+                            <button class="btn btn-outline-secondary" data-dismiss="modal">{!! __('language.cancel') !!}</button>
                         </div>
                     </div>
                 </form>
